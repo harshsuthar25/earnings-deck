@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quarterly Earnings — Interactive RevealJS Deck</title>
+
+    <!-- Reveal.js core & theme via CDN (self-contained single file deploy) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/dist/theme/white.css" id="theme" />
+
+    <!-- Code highlight theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/plugin/highlight/monokai.css" />
+
+    <style>
+      /* Brand tweaks */
+      .reveal .slides { text-align: left; }
+      .reveal h1, .reveal h2, .reveal h3 { font-weight: 700; }
+      .r-fit { width: 100%; }
+      .kpi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+      .kpi > div { border: 1px solid #eee; border-radius: 16px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+      .badge { font-size: .8rem; padding: .2rem .5rem; border-radius: 12px; background: #eef7ff; }
+      .chart { width: 100%; height: 360px; }
+      @media (max-width: 900px){ .kpi{ grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- TITLE -->
+        <section data-background-color="#0f172a" data-background-gradient="radial-gradient(circle at 25% 15%, #0ea5e9 0, #0f172a 50%)" style="color:#fff;">
+          <h1>Quarterly Earnings Report</h1>
+          <h3>Interactive Stakeholder Briefing</h3>
+          <p style="margin-top:18px">Prepared by: Technical Consultant<br/>
+          <strong>24f2000011@ds.study.iitm.ac.in</strong></p>
+          <p class="fragment">Built with RevealJS • Deployed on GitHub Pages</p>
+          <aside class="notes">
+            Welcome the audience. Mention that this deck is fully web-based, supports live demos, code, math, and export to PDF.
+          </aside>
+        </section>
+
+        <!-- MARKDOWN SLIDE (required) -->
+        <section data-markdown>
+          <textarea data-template>
+## Agenda
+
+- Overview & KPIs
+- Revenue & Margin Trend
+- Guidance Update
+- Risks & Mitigations
+- Q&A
+
+*Tip:* Press **S** for speaker notes, **O** for overview.
+
+---
+
+## Highlights This Quarter
+
+- Revenue up **12.4% YoY**
+- Operating margin improved by **180 bps**
+- Cloud ARR crossed **$1B**
+- Net retention at **118%**
+          </textarea>
+          <aside class="notes">Keep this quick: ~60 seconds. Call out YoY growth and margin expansion. Tease the retention figure.</aside>
+        </section>
+
+        <!-- KPI with FRAGMENTS (required animated elements) -->
+        <section>
+          <h2>Key Performance Indicators</h2>
+          <div class="kpi">
+            <div class="fragment">
+              <div class="badge">Revenue</div>
+              <h3>$2.48B <small class="badge">+12.4% YoY</small></h3>
+              <p>Driven by subscription and cloud.</p>
+            </div>
+            <div class="fragment fade-up">
+              <div class="badge">Op. Margin</div>
+              <h3>23.1% <small class="badge">+180 bps</small></h3>
+              <p>Leverage from scale and mix.</p>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+              <div class="badge">Net Retention</div>
+              <h3>118%</h3>
+              <p>Expansion in enterprise accounts.</p>
+            </div>
+          </div>
+          <aside class="notes">Reveal each KPI with a quick comment. Emphasize sustainable trend rather than one-off items.</aside>
+        </section>
+
+        <!-- CODE SAMPLE with syntax highlighting + line numbers (required) -->
+        <section>
+          <h2>Forecast Snippet (Python)</h2>
+          <pre><code class="language-python" data-line-numbers="1-4|6-9|11-13">
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+x = np.arange(1, 9).reshape(-1, 1)  # quarters
+rev = np.array([1780, 1850, 1910, 1995, 2080, 2165, 2250, 2480])  # $M
+
+m = LinearRegression().fit(x, rev)
+q9 = m.predict([[9]])
+
+print(round(float(q9), 1))  # guided point estimate for next quarter
+          </code></pre>
+          <aside class="notes">This is illustrative only; actual forecasting uses a fuller model. The key message: momentum continues.</aside>
+        </section>
+
+        <!-- MATH (required) -->
+        <section>
+          <h2>Valuation & Returns</h2>
+          <p>Net Present Value (NPV):</p>
+          <p>\[ \mathrm{NPV} = \sum_{t=1}^{T} \frac{CF_t}{(1+r)^t} - C_0 \]</p>
+          <p>Weighted Average Cost of Capital (WACC):</p>
+          <p>\[ \mathrm{WACC} = \frac{E}{D+E}k_e + \frac{D}{D+E}k_d(1-\tau) \]</p>
+          <aside class="notes">Use NPV to frame long‑term investment decisions. Tie WACC to current rate environment.</aside>
+        </section>
+
+        <!-- SIMPLE LIVE CHART (Optional but nice) -->
+        <section>
+          <h2>Revenue Trend (Interactive)</h2>
+          <div id="rev-chart" class="chart"></div>
+          <aside class="notes">Bars animate on slide enter. If performance is low, they render instantly.</aside>
+        </section>
+
+        <!-- SPEAKER NOTES demo (already used above) -->
+        <section>
+          <h2>Q&A</h2>
+          <p>Contact: <strong>24f2000011@ds.study.iitm.ac.in</strong></p>
+          <aside class="notes">Invite questions. Offer to share the GitHub Pages link and PDF export.</aside>
+        </section>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.2/plugin/notes/notes.js"></script>
+
+    <!-- Lightweight chart (no build step) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+    <script>
+      // Initialize deck with required plugins
+      Reveal.initialize({
+        width: 1280,
+        height: 720,
+        margin: 0.05,
+        controls: true,
+        progress: true,
+        history: true,
+        transition: 'slide',
+        plugins: [ RevealMarkdown, RevealHighlight, RevealMath.KaTeX, RevealNotes ],
+        math: { // KaTeX CDN defaults embedded by plugin
+          // leave defaults
+        }
+      });
+
+      // Build a simple revenue bar chart when the chart slide appears
+      const makeRevenueChart = () => {
+        const el = document.getElementById('rev-chart');
+        if (!el || el.dataset.booted) return;
+        const canvas = document.createElement('canvas');
+        el.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        const labels = ['Q1','Q2','Q3','Q4','Q1','Q2','Q3','Q4'];
+        const data = [1780,1850,1910,1995,2080,2165,2250,2480];
+        el.dataset.booted = '1';
+        new Chart(ctx, {
+          type: 'bar',
+          data: { labels, datasets: [{ label: 'Revenue ($M)', data }] },
+          options: { responsive: true, maintainAspectRatio: false, animation: { duration: 900 } }
+        });
+      };
+
+      Reveal.addEventListener('slidechanged', e => {
+        if (e.currentSlide && e.currentSlide.querySelector('#rev-chart')) {
+          makeRevenueChart();
+        }
+      });
+    </script>
+  </body>
+</html>
